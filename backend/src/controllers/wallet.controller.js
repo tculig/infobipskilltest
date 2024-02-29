@@ -136,6 +136,15 @@ class WalletController {
             next(error)
         }
     }
+
+    getSingleTokenData = async (req, res, next) => {
+        try {
+            const result = await WalletService.getSingleTokenData(req.params.symbol);
+            res.send(result)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = new WalletController;

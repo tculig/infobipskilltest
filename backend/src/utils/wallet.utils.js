@@ -245,7 +245,7 @@ class Wallet {
         }
     }
 
-    async getSingleTokenPrice(symbol) {
+    async getSingleTokenData(symbol) {
         let qs = `?symbol=${symbol}`
         try {
             let result = await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'+qs, {
@@ -253,11 +253,17 @@ class Wallet {
                     'X-CMC_PRO_API_KEY': process.env.COINMARKET_APIKEY,
                 }
             });
-            return result.data.data[symbol.toUpperCase()].quote.USD.price
+            const base = result.data.data[symbol.toUpperCase()];
+            return  { name:base.name, symbol:base.symbol, price:base.quote.USD.price, daily_percent:base.quote.USD.percent_change_24h}
         } catch (error) {
             // console.log(error)
-            return 0
+            return {error:error}
         }
+    }
+
+    async getSingleTokenPrice(symbol) {
+        const result = await this.getSingleTokenData(symbol);
+        return result.price ?? 0;
     }
 
     getPublicKey(privateKey) {

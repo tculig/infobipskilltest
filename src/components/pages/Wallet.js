@@ -167,6 +167,11 @@ function Wallet() {
     
     window.location.href="/"
   }
+
+  function accessWallet() {
+    window.location.href = "/walletMain"
+  }
+
   const changeNetwork=(chain)=>{
     setNetwork(chain);
     walletData.setNetwork(chain);
@@ -217,28 +222,38 @@ function Wallet() {
                   <p className="text-xl font-bold myColor1">${parseFloat(totalPrice).toFixed(3)} USD </p>
                 </Col>
 
-                <Col xs={{span:24}} md={{span:14}} className="bg-white border-l-8 border-gray-200 p-4 ">
-                  <Row className="text-xl myColor1 text-center">
-                    <Col span={10}>
-                      {t("QR Code")}
-                    </Col>
-                     <Col span={14}>
-                      {t("Wallet Address")}
-                    </Col>
-                  </Row>
-                  <Row className="mt-2  text-center">
-                    <Col span={10} className="text-overflow">
-                      <QRCode
-                        size={100} 
-                        value={publicKey}
-                        className="inline mr-2"/>
-                    </Col>
-                    <Col span={14}>
-                      <Paragraph copyable className="myColor1 font-bold ">{publicKey}</Paragraph>
-                    </Col>
-                  </Row>
+                <Col xs={{ span: 24 }} md={{ span: 14 }} className="bg-white border-l-8 border-gray-200 p-4 ">
+                    <Row className="text-xl myColor1 text-center">
+                      <Col span={10}>
+                        {t("QR Code")}
+                      </Col>
+                      <Col span={14}>
+                        {t("Wallet Address")}
+                      </Col>
+                    </Row>
+                    <Row className="mt-2  text-center">
+                      <Col span={10} className="text-overflow">
+                        <QRCode
+                          size={100}
+                          value={publicKey}
+                          className="inline mr-2" />
+                      </Col>
+                      <Col span={14}>
+                      <Row className="mt-2  text-center">
+                      <Col span={24}>
+                        <Paragraph copyable className="myColor1 font-bold ">{publicKey}</Paragraph>
+                        </Col>
+                        </Row>
+                        <Row className="mt-2  text-center">
+                        <Col span={24}>
+                        <Button className="access-button" onClick={accessWallet}>{t("CHANGE WALLET")}</Button>
+                        </Col>
+                        </Row>
+                      </Col>
+                
+                    </Row>
 
-                </Col>
+                  </Col>
               </Row>
               <Row className="bg-white border-l-8 border-gray-200 border-t-8 flex-grow ">
                 {

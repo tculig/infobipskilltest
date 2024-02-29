@@ -184,7 +184,15 @@ function Wallet() {
     window.location.href = "/"
   }
 
+<<<<<<< HEAD
   const changeNetwork = (chain) => {
+=======
+  function accessWallet() {
+    window.location.href = "/walletMain"
+  }
+
+  const changeNetwork=(chain)=>{
+>>>>>>> origin/add-wallet-change-to-profile-page
     setNetwork(chain);
     walletData.setNetwork(chain);
     setVisible(false);
@@ -240,6 +248,7 @@ function Wallet() {
                     <p className="text-xl font-bold myColor1">${parseFloat(totalPrice).toFixed(3)} USD </p>
                   </Col>
 
+<<<<<<< HEAD
                   <Col xs={{span:24}} md={{span:14}} className="bg-white border-l-8 border-gray-200 p-4 ">
                   <Row className="text-xl myColor1 text-center">
                     <Col span={10}>
@@ -264,6 +273,70 @@ function Wallet() {
                 </Col>
                 </Row>
                 <Row className="bg-white border-l-8 border-gray-200 border-t-8 flex-grow ">
+=======
+                <Col xs={{ span: 24 }} md={{ span: 14 }} className="bg-white border-l-8 border-gray-200 p-4 ">
+                    <Row className="text-xl myColor1 text-center">
+                      <Col span={10}>
+                        {t("QR Code")}
+                      </Col>
+                      <Col span={14}>
+                        {t("Wallet Address")}
+                      </Col>
+                    </Row>
+                    <Row className="mt-2  text-center">
+                      <Col span={10} className="text-overflow">
+                        <QRCode
+                          size={100}
+                          value={publicKey}
+                          className="inline mr-2" />
+                      </Col>
+                      <Col span={14}>
+                      <Row className="mt-2  text-center">
+                      <Col span={24}>
+                        <Paragraph copyable className="myColor1 font-bold ">{publicKey}</Paragraph>
+                        </Col>
+                        </Row>
+                        <Row className="mt-2  text-center">
+                        <Col span={24}>
+                        <Button className="access-button" onClick={accessWallet}>{t("CHANGE WALLET")}</Button>
+                        </Col>
+                        </Row>
+                      </Col>
+                
+                    </Row>
+
+                  </Col>
+              </Row>
+              <Row className="bg-white border-l-8 border-gray-200 border-t-8 flex-grow ">
+                {
+                  idx===0?
+                    <WalletPortfolio tokensInfo={tokensInfo} network={network.url} getAssets={reload}/>
+                  :idx===1?
+                    <WalletSend 
+                      network={network} 
+                      tokensInfo={tokensInfo} 
+                      getAssets={reload} 
+                      transactions={transations} 
+                      setTransactions={setTransactions}
+                      setIdx = {setIdx} 
+                      setStopMode = {setStopMode}/>                  
+                  :idx===2?
+                    <WalletBuy />
+                  :idx===3?
+                    <WalletActivity/>
+                  :idx===4?
+                    <WalletManageKeys network={network}/>
+                  :idx===5?
+                    <WalletProfile />
+                  :null
+                }
+              </Row>
+            </Col >
+            <Col xs={{span:24}} md={{span:6}} className="bg-white border-l-8 border-gray-200 myColor1">
+              <Row className="border-b-8 border-gray-200 p-4 text-center">
+                
+                <Col span={12} className="flex flex-col items-center">
+>>>>>>> origin/add-wallet-change-to-profile-page
                   {
                     idx === 0 ?
                       <WalletPortfolio tokensInfo={tokensInfo} network={network.url} getAssets={reload} />

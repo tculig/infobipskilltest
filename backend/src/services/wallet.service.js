@@ -447,6 +447,14 @@ class WalletService {
         }
         return {response:true, message:"Success", data:null}
     }
+
+    static async getSingleTokenData(symbol) {
+        const result = await new Wallet().getSingleTokenData(symbol);
+        if (result.error) {
+            return {response:false, message:result.error.message, data:null}
+        }
+        return {response:true, message:"Success", data:result};
+    }
 }
 
 module.exports = WalletService;
